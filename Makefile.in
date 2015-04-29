@@ -1,0 +1,64 @@
+CC      := @CC@
+CFLAGS  := @CFLAGS@ @DEFS@
+
+LD_SHARED       := @LD_SHARED@
+
+DESTDIR := 
+prefix := @prefix@
+exec_prefix := @exec_prefix@
+ecae_user := @user@
+bindir := @bindir@
+libexecdir := @libexecdir@
+sysconfdir := @sysconfdir@
+libdir := @libdir@
+includedir := @includedir@
+mandir := @mandir@
+datarootdir = @datarootdir@
+datadir = @datadir@
+INSTALL := @INSTALL@
+ERTS_VSN := @ERLANG_ERTS_VER@
+DORAEMON_VSN := svn
+REBAR := ./rebar
+
+
+.PHONY: all deps doc test clean release start
+
+all: deps version 
+	$(REBAR) compile
+
+version:
+	@echo "-define(doraemon_vsn, \"${DORAEMON_VSN}\")." | tee include/vsn.hrl
+
+deps:
+	$(REBAR) get-deps
+
+doc:
+	$(REBAR) doc skip_deps=true
+
+test:
+	$(REBAR) eunit skip_deps=true
+
+clean:clean_thrift clean_misc
+	$(REBAR) clean
+
+dialyzer: all test
+	dialyzer --src src/*.erl deps/*/src/*.erl
+
+release: all test
+	rm -rf rel/doraemon/
+	$(REBAR) generate
+
+install:
+	$(INSTALL) -d ${DESTDIR}@prefix@ ${DESTDIR}@bindir@
+	cp -r rel/doraemon ${DESTDIR}@prefix@
+	$(INSTALL) doraemond ${DESTDIR}@bindir@
+	
+start: all
+	./start.sh 
+
+clean_thrift:
+	rm -rf ./include/thrift/*
+
+clean_misc:
+	rm -rf core autom4te.cache config.log config.status 
+

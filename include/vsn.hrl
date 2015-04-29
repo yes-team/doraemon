@@ -1,0 +1,1 @@
+-define(doraemon_vsn, "svn").

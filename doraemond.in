@@ -1,0 +1,8 @@
+#!/bin/sh
+
+prefix=@prefix@
+doraemon_prefix=@exec_prefix@
+libexecdir=@libexecdir@
+
+
+exec @prefix@/doraemon/bin/doraemon $@

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+prefix=/usr/local/
+doraemon_prefix=${prefix}
+libexecdir=${exec_prefix}/libexec
+
+
+exec /usr/local//doraemon/bin/doraemon $@

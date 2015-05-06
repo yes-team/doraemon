@@ -1,0 +1,15 @@
+Doraemon
+
+rrdtool
+
+erlang r16b 版本 
+存储使用leveldb
+
+启动方式 make start 
+
+初始化并生成admin账号
+
+doraemon_setup:init()
+
+配置文件 doraemon/rel/files/app.config
+

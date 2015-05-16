@@ -1,0 +1,20 @@
+Betternow 安装
+  1、必须为 erlang r16b 版本
+    1.1、
+      apt-get update
+      apt-get --fix-missing -y install build-essential m4 libncurses5-dev libssh-dev unixodbc-dev libgmp3-dev libwxgtk2.8-dev libglu1-mesa-dev fop xsltproc default-jdk
+      mkdir -p /src/erlang
+      cd /src/erlang
+      wget http://www.erlang.org/download/otp_src_R15B01.tar.gz
+      tar -xvzf otp_src_R16B01.tar.gz
+      chmod -R 777 otp_src_R16B01
+      cd otp_src_R16B01
+      ./configure
+      make
+      make install
+
+      或者 http://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_3_general/esl-erlang_16.b~ubuntu~precise_amd64.deb
+      dpkg -i esl-erlang_16.b~ubuntu~precise_amd64.deb
+
+
+      

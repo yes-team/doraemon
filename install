@@ -2,13 +2,16 @@ Betternow 安装
   1、必须为 erlang r16b 版本
     1.1、
       apt-get update
-      apt-get --fix-missing -y install build-essential m4 libncurses5-dev libssh-dev unixodbc-dev libgmp3-dev libwxgtk2.8-dev libglu1-mesa-dev fop xsltproc default-jdk
+      sudo apt-get -y install gcc  g++ make
+
+      apt-get --fix-missing -y install build-essential m4 libncurses5-dev libssh-dev unixodbc-dev libgmp3-dev libwxgtk2.8-dev libglu1-mesa-dev fop xsltproc libxml2-utils default-jdk
       mkdir -p /src/erlang
       cd /src/erlang
       wget http://www.erlang.org/download/otp_src_R16B.tar.gz
-      tar -xvzf otp_src_R16B01.tar.gz
-      chmod -R 777 otp_src_R16B01
-      cd otp_src_R16B01
+      tar -xvzf otp_src_R16B.tar.gz
+      chmod -R 777 otp_src_R16B
+      cd otp_src_R16B
+      export ERL_TOP=`pwd`
       ./configure
       make
       make install

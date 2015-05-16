@@ -1,1 +1,6 @@
 doraemon.iml
+ebin
+deps/
+config.log
+config.status
+Makefile
